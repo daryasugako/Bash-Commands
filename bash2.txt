@@ -1,0 +1,95 @@
+1.Создать папку test 3
+mkdir test3
+
+
+2.Добавить в него три файла 4, 5 и 6, в каждом из которых должно быть по 4 строки 
+cat >> 4.txt                
+row1
+row2
+row3
+row4
+(Enter  Ctrl+C)
+
+cat >> 5.txt
+row1
+row2
+row3
+row4
+(Enter  Ctrl+C)
+
+cat >> 6.txt
+row1
+row2
+row3
+row4
+(Enter  Ctrl+C)
+
+
+3.Найдите строку row2 в файле 5
+ grep row2 5.txt
+
+4.Найдите строку row в папке test3
+cd ..
+grep -R row test3
+
+5.Посчитайте сколько строк с содержимым row в файле 6
+grep row 6.txt -c
+
+6.Найдите файл 5 внутри папки test3
+find -name "5.txt"
+
+7.Используя команду find, удалите файл 5
+find 5.txt -delete
+
+8.Используя команду echo, добавьте слово test в файл 4
+echo "test" >>4.txt   (если затереть все строки и оставить только "test" то echo   "test" >4.txt)
+
+
+9.Замените слово test в файле 4 на fail
+ sed -i 's/test/fail/' 4.txt
+
+10.Добавьте в файл 4 слово test так, чтобы сохранилось содержимое
+echo "test" >>4.txt
+
+11.Просмотрите все процессы для юзеров не только в консоли, которые происходят в системе
+ps x (или ps u)
+
+12.Убейте процесс 666 в консоли
+kill 666
+
+13.Узнайте доступность ресурса artsiomrusau.com, используя ping
+ping artsiomrusau.com
+
+14.Отправьте 5 пакетов на сайт artsiomrusau.com
+ping -c 5 artsiomrusau.com
+
+15.Используя GET и команду curl, получите информацию о зарегистрированных питомцах на https://petstore.swagger.io/
+ curl https://petstore.swagger.io/v2/pet/findByStatus?status=available
+
+16.Используя POST и команду curl, создайте нового пользователя на https://petstore.swagger.io/
+Короче не смогла сделать так, ка кты показывал. Но нашла, что можно создать json файл на компе с данными:
+{
+    "id": 996,
+    "category": {
+        "id": 123,
+        "name": "test"
+    },
+    "name": "Nikusha",
+    "photoUrls": [
+        "string"
+    ],
+    "tags": [
+        {
+            "id": 0,
+            "name": "string"
+        }
+    ],
+    "status": "available"
+}
+перейти в терминале в эту папку и отправить запрос:      
+curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d @mypet.json "https://petstore.swagger.io/v2/pet"
+и вот что приходит 
+ % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   392    0   141  100   251    259    461 --:--:-- --:--:-- --:--:--   721{"id":996,"category":{"id":123,"name":"test"},"name":"Nikusha","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"}
+
